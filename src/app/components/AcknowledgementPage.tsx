@@ -26,8 +26,6 @@ export function AcknowledgementPage({ isDarkMode }: AcknowledgementPageProps) {
               <ul className={`list-disc list-inside space-y-2 ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>
                 <li>Vellore Institute of Technology (VIT), Vellore, India</li>
                 <li>Department of Science and Technology (DST), Government of India</li>
-                <li>Indian Council of Medical Research (ICMR)</li>
-                <li>Council of Scientific and Industrial Research (CSIR)</li>
               </ul>
             </div>
           </div>
@@ -45,7 +43,7 @@ export function AcknowledgementPage({ isDarkMode }: AcknowledgementPageProps) {
             
             <ul className={`space-y-3 ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>
               <li>
-                <strong>Dr. Guide Name</strong> - Research Supervisor and Professor, Department of Botanical Sciences, VIT
+                <strong>Dr. Guide Name</strong> - Research Supervisor and Professor, Department of Integrative Biology, VIT Vellore
                 <br />
                 <span className={`text-sm ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>
                   For invaluable guidance, constant support, and mentorship throughout this research
@@ -67,17 +65,6 @@ export function AcknowledgementPage({ isDarkMode }: AcknowledgementPageProps) {
             <h2 className={`text-2xl font-bold mb-6 ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
               Institutional Support
             </h2>
-            
-            <p className={`mb-4 ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>
-              We acknowledge the support from:
-            </p>
-            
-            <ul className={`list-disc list-inside space-y-2 ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>
-              <li>The Dean and faculty members of the School of Biosciences and Technology</li>
-              <li>VIT Central Library for providing access to research databases and journals</li>
-              <li>Laboratory staff and research assistants for their technical support</li>
-              <li>Fellow researchers and PhD scholars for their valuable discussions and feedback</li>
-            </ul>
           </div>
           
           {/* Data Sources */}
