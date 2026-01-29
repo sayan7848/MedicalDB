@@ -8,8 +8,8 @@ import { CompoundDetailPage } from "@/app/components/CompoundDetailPage";
 import { ContactPage } from "@/app/components/ContactPage";
 import { AcknowledgementPage } from "@/app/components/AcknowledgementPage";
 import { Plant, PhytoCompound } from "@/app/data/mockData";
-import vitLogo from "figma:asset/425314c8321c30346a324b0b3dce365185965331.png";
-import headerBg from "figma:asset/6abdbe5a9ca4f7200906e3e2f5e6b79252364bb0.png";
+import vitLogo from "@/assets/425314c8321c30346a324b0b3dce365185965331.png";
+import headerBg from "@/assets/6abdbe5a9ca4f7200906e3e2f5e6b79252364bb0.png";
 
 interface UserData {
   name: string;
