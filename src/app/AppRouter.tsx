@@ -1,6 +1,7 @@
 import { BrowsePage } from "@/app/components/BrowsePage";
 import { SearchPage } from "@/app/components/SearchPage";
 import { HelpPage } from "@/app/components/HelpPage";
+import { CitationPage } from "@/app/components/CitationPage";
 import { PlantDetailPage } from "@/app/components/PlantDetailPage";
 import { CompoundDetailPage } from "@/app/components/CompoundDetailPage";
 import { Plant, PhytoCompound } from "@/app/data/mockData";
@@ -28,6 +29,10 @@ export function AppRouter({ currentPage, isDarkMode, selectedPlant, selectedComp
   
   if (currentPage === 'help') {
     return <HelpPage isDarkMode={isDarkMode} />;
+  }
+  
+  if (currentPage === 'citation') {
+    return <CitationPage isDarkMode={isDarkMode} />;
   }
   
   if (currentPage === 'plant-detail' && selectedPlant) {

@@ -3,6 +3,7 @@ import { Search, Menu, FlaskConical, User, ChevronDown, LogOut, X, Moon, Sun, Ma
 import { BrowsePage } from "@/app/components/BrowsePage";
 import { SearchPage } from "@/app/components/SearchPage";
 import { HelpPage } from "@/app/components/HelpPage";
+import { CitationPage } from "@/app/components/CitationPage";
 import { PlantDetailPage } from "@/app/components/PlantDetailPage";
 import { CompoundDetailPage } from "@/app/components/CompoundDetailPage";
 import { ContactPage } from "@/app/components/ContactPage";
@@ -65,7 +66,7 @@ export default function App() {
   const [signUpError, setSignUpError] = useState('');
 
   // Navigation states
-  const [currentPage, setCurrentPage] = useState<'home' | 'browse' | 'search' | 'help' | 'plant-detail' | 'compound-detail' | 'contact' | 'acknowledgement'>('home');
+  const [currentPage, setCurrentPage] = useState<'home' | 'browse' | 'search' | 'help' | 'citation' | 'plant-detail' | 'compound-detail' | 'contact' | 'acknowledgement'>('home');
   const [previousPage, setPreviousPage] = useState<'home' | 'browse' | 'search' | 'help'>('home');
   const [selectedPlant, setSelectedPlant] = useState<Plant | null>(null);
   const [selectedCompound, setSelectedCompound] = useState<PhytoCompound | null>(null);
@@ -255,15 +256,6 @@ export default function App() {
             {/* Right side - Dark mode toggle and Auth buttons */}
             <div className="flex-shrink-0">
               <div className="flex items-center gap-3">
-                {/* Dark mode toggle */}
-                <button
-                  onClick={toggleDarkMode}
-                  className="bg-white/20 hover:bg-white/30 backdrop-blur-sm text-white p-3 rounded-lg shadow-lg transition-colors"
-                  aria-label="Toggle dark mode"
-                >
-                  {isDarkMode ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
-                </button>
-                
                 {currentUser ? (
                   /* User dropdown */
                   <div className="relative">
@@ -312,6 +304,14 @@ export default function App() {
                     </button>
                   </>
                 )}
+                {/* Dark mode toggle */}
+                <button
+                  onClick={toggleDarkMode}
+                  className="bg-white/20 hover:bg-white/30 backdrop-blur-sm text-white p-3 rounded-lg shadow-lg transition-colors"
+                  aria-label="Toggle dark mode"
+                >
+                  {isDarkMode ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
+                </button>
               </div>
             </div>
           </div>
@@ -355,6 +355,9 @@ export default function App() {
                       <button onClick={() => handleNavigate('help')} className={`w-full text-left block px-4 py-3 transition-colors ${isDarkMode ? 'text-gray-300 hover:bg-gray-700' : 'text-gray-700 hover:bg-gray-100'}`}>
                         Help
                       </button>
+                      <button onClick={() => handleNavigate('citation')} className={`w-full text-left block px-4 py-3 transition-colors ${isDarkMode ? 'text-gray-300 hover:bg-gray-700' : 'text-gray-700 hover:bg-gray-100'}`}>
+                        Citation
+                      </button>
                       <button onClick={() => handleNavigate('contact')} className={`w-full text-left block px-4 py-3 transition-colors ${isDarkMode ? 'text-gray-300 hover:bg-gray-700' : 'text-gray-700 hover:bg-gray-100'}`}>
                         Contact
                       </button>
@@ -388,6 +391,8 @@ export default function App() {
           <SearchPage isDarkMode={isDarkMode} onNavigate={handleNavigate} />
         ) : currentPage === 'help' ? (
           <HelpPage isDarkMode={isDarkMode} />
+        ) : currentPage === 'citation' ? (
+          <CitationPage isDarkMode={isDarkMode} />
         ) : currentPage === 'plant-detail' && selectedPlant ? (
           <PlantDetailPage plant={selectedPlant} isDarkMode={isDarkMode} onBack={handleBack} />
         ) : currentPage === 'compound-detail' && selectedCompound ? (
