@@ -1,13 +1,25 @@
-import { Mail, Phone, MapPin, User as UserIcon } from "lucide-react";
+import { Mail, Phone, MapPin, User as UserIcon, ArrowLeft } from "lucide-react";
 
 interface ContactPageProps {
   isDarkMode: boolean;
+  onBack: () => void;
 }
 
-export function ContactPage({ isDarkMode }: ContactPageProps) {
+export function ContactPage({ isDarkMode, onBack }: ContactPageProps) {
   return (
     <div className={`min-h-full ${isDarkMode ? 'bg-gray-900' : 'bg-gray-50'} py-12 px-4 sm:px-8`}>
       <div className="max-w-4xl mx-auto">
+        <button
+          onClick={onBack}
+          className={`flex items-center gap-2 mb-6 px-4 py-2 rounded-lg transition-colors ${
+            isDarkMode 
+              ? 'bg-gray-800 hover:bg-gray-700 text-white' 
+              : 'bg-white hover:bg-gray-100 text-gray-900'
+          } border ${isDarkMode ? 'border-gray-700' : 'border-gray-200'}`}
+        >
+          <ArrowLeft className="w-4 h-4" />
+          <span>Back</span>
+        </button>
         <h1 className={`text-4xl font-bold mb-8 ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>Contact</h1>
         
         <div className="space-y-8">

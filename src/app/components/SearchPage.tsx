@@ -1,14 +1,15 @@
 import { useState, useEffect } from "react";
 import { plants, phytoCompounds, Plant, PhytoCompound } from "@/app/data/mockData";
-import { Search, Leaf, FlaskConical } from "lucide-react";
+import { Search, Leaf, FlaskConical, ArrowLeft } from "lucide-react";
 import Fuse from "fuse.js";
 
 interface SearchPageProps {
   isDarkMode: boolean;
   onNavigate: (page: string, data?: Plant | PhytoCompound) => void;
+  onBack: () => void;
 }
 
-export function SearchPage({ isDarkMode, onNavigate }: SearchPageProps) {
+export function SearchPage({ isDarkMode, onNavigate, onBack }: SearchPageProps) {
   const [plantQuery, setPlantQuery] = useState("");
   const [compoundQuery, setCompoundQuery] = useState("");
   const [plantSuggestions, setPlantSuggestions] = useState<Plant[]>([]);
@@ -68,6 +69,17 @@ export function SearchPage({ isDarkMode, onNavigate }: SearchPageProps) {
   return (
     <div className={`min-h-screen ${isDarkMode ? 'bg-gray-900' : 'bg-gray-50'} py-8 sm:py-12`}>
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <button
+          onClick={onBack}
+          className={`flex items-center gap-2 mb-6 px-4 py-2 rounded-lg transition-colors ${
+            isDarkMode 
+              ? 'bg-gray-800 hover:bg-gray-700 text-white' 
+              : 'bg-white hover:bg-gray-100 text-gray-900'
+          } border ${isDarkMode ? 'border-gray-700' : 'border-gray-200'}`}
+        >
+          <ArrowLeft className="w-4 h-4" />
+          <span>Back</span>
+        </button>
         <h1 className={`text-2xl sm:text-4xl font-bold mb-8 ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
           Search Database
         </h1>

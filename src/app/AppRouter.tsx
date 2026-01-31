@@ -20,19 +20,19 @@ export function AppRouter({ currentPage, isDarkMode, selectedPlant, selectedComp
   
   // Render different pages based on currentPage state
   if (currentPage === 'browse') {
-    return <BrowsePage isDarkMode={isDarkMode} onNavigate={onNavigate} />;
+    return <BrowsePage isDarkMode={isDarkMode} onNavigate={onNavigate} onBack={onBack} />;
   }
   
   if (currentPage === 'search') {
-    return <SearchPage isDarkMode={isDarkMode} onNavigate={onNavigate} />;
+    return <SearchPage isDarkMode={isDarkMode} onNavigate={onNavigate} onBack={onBack} />;
   }
   
   if (currentPage === 'help') {
-    return <HelpPage isDarkMode={isDarkMode} />;
+    return <HelpPage isDarkMode={isDarkMode} onBack={onBack} />;
   }
   
   if (currentPage === 'citation') {
-    return <CitationPage isDarkMode={isDarkMode} />;
+    return <CitationPage isDarkMode={isDarkMode} onBack={onBack} />;
   }
   
   if (currentPage === 'plant-detail' && selectedPlant) {

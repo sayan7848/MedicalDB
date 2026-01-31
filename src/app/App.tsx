@@ -386,21 +386,21 @@ export default function App() {
       <main className="relative flex-grow overflow-hidden">
         {/* Conditional rendering based on current page */}
         {currentPage === 'browse' ? (
-          <BrowsePage isDarkMode={isDarkMode} onNavigate={handleNavigate} />
+          <BrowsePage isDarkMode={isDarkMode} onNavigate={handleNavigate} onBack={handleBack} />
         ) : currentPage === 'search' ? (
-          <SearchPage isDarkMode={isDarkMode} onNavigate={handleNavigate} />
+          <SearchPage isDarkMode={isDarkMode} onNavigate={handleNavigate} onBack={handleBack} />
         ) : currentPage === 'help' ? (
-          <HelpPage isDarkMode={isDarkMode} />
+          <HelpPage isDarkMode={isDarkMode} onBack={handleBack} />
         ) : currentPage === 'citation' ? (
-          <CitationPage isDarkMode={isDarkMode} />
+          <CitationPage isDarkMode={isDarkMode} onBack={handleBack} />
         ) : currentPage === 'plant-detail' && selectedPlant ? (
           <PlantDetailPage plant={selectedPlant} isDarkMode={isDarkMode} onBack={handleBack} />
         ) : currentPage === 'compound-detail' && selectedCompound ? (
           <CompoundDetailPage compound={selectedCompound} isDarkMode={isDarkMode} onBack={handleBack} />
         ) : currentPage === 'contact' ? (
-          <ContactPage isDarkMode={isDarkMode} />
+          <ContactPage isDarkMode={isDarkMode} onBack={handleBack} />
         ) : currentPage === 'acknowledgement' ? (
-          <AcknowledgementPage isDarkMode={isDarkMode} />
+          <AcknowledgementPage isDarkMode={isDarkMode} onBack={handleBack} />
         ) : (
           <>
             {/* Dynamic background images with transition */}
