@@ -317,31 +317,24 @@ export default function App() {
           </div>
           
           {/* Center content - Website name and description (moved down) */}
-          <div className="flex-grow flex flex-col items-center justify-center px-2 text-center">
+          <div className="flex-grow flex flex-col items-center justify-start pt-1 sm:pt-2 px-2 text-center">
             <h1 className="text-3xl sm:text-5xl font-bold text-white mb-2 leading-tight">DatabaseWebsite</h1>
-            <p className="text-base sm:text-xl text-gray-200">Plant & PhytoCompound Research Portal</p>
-          </div>
-        </div>
-      </header>
-
-      {/* Database Description Section */}
-      <section className={`relative py-8 shadow-md ${isDarkMode ? 'bg-gray-800' : 'bg-white'}`}>
-        <div className="max-w-7xl mx-auto px-4 sm:px-8">
-          <div className="flex items-start gap-6">
+            <p className="text-base sm:text-xl text-gray-200 mb-6">Plant & PhytoCompound Research Portal</p>
+            
             {/* Hamburger menu (when logged in) */}
             {currentUser && (
-              <div className="relative flex-shrink-0">
+              <div className="relative mt-10 sm:mt-12">
                 <button
                   onClick={() => setShowHamburgerMenu(!showHamburgerMenu)}
-                  className={`p-3 rounded-lg shadow-lg transition-colors ${isDarkMode ? 'bg-gray-700 hover:bg-gray-600 text-white' : 'bg-gray-200 hover:bg-gray-300 text-gray-900'}`}
+                  className="bg-white/10 hover:bg-white/20 backdrop-blur-sm text-white px-16 py-2 rounded-lg font-semibold border border-white/30 shadow-lg transition-colors flex items-center justify-center"
                   aria-label="Toggle menu"
                 >
-                  {showHamburgerMenu ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+                  {showHamburgerMenu ? <X className="w-6 h-6" /> : <Menu className="w-8 h-6 scale-x-[1.8]" />}
                 </button>
                 
                 {/* Hamburger Menu Dropdown */}
                 {showHamburgerMenu && (
-                  <div className={`absolute top-full mt-2 left-0 w-64 rounded-lg shadow-xl z-50 ${isDarkMode ? 'bg-gray-800 border-gray-700' : 'bg-white'} border`}>
+                  <div className={`absolute top-full mt-2 left-1/2 -translate-x-1/2 w-64 rounded-lg shadow-xl z-50 ${isDarkMode ? 'bg-gray-800 border-gray-700' : 'bg-white'} border`}>
                     <nav className="py-2">
                       <button onClick={() => handleNavigate('home')} className={`w-full text-left block px-4 py-3 transition-colors ${isDarkMode ? 'text-gray-300 hover:bg-gray-700' : 'text-gray-700 hover:bg-gray-100'}`}>
                         Home
@@ -369,15 +362,19 @@ export default function App() {
                 )}
               </div>
             )}
-            
-            {/* Description text */}
-            <div className="flex-grow text-center px-2">
-              <p className={`text-base sm:text-lg leading-relaxed ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>
-                Welcome to DatabaseWebsite, a comprehensive research platform dedicated to botanical sciences and phytochemistry. 
-                This database provides detailed information on medicinal plant species and their phytochemical compounds, 
-                supporting advanced research in pharmacology, ethnobotany, and natural product chemistry.
-              </p>
-            </div>
+          </div>
+        </div>
+      </header>
+
+      {/* Database Description Section */}
+      <section className={`relative py-8 shadow-md ${isDarkMode ? 'bg-gray-800' : 'bg-white'}`}>
+        <div className="max-w-7xl mx-auto px-4 sm:px-8">
+          <div className="text-center px-2">
+            <p className={`text-base sm:text-lg leading-relaxed ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>
+              Welcome to DatabaseWebsite, a comprehensive research platform dedicated to botanical sciences and phytochemistry. 
+              This database provides detailed information on medicinal plant species and their phytochemical compounds, 
+              supporting advanced research in pharmacology, ethnobotany, and natural product chemistry.
+            </p>
           </div>
         </div>
       </section>
