@@ -177,6 +177,7 @@ export default function App() {
     setCurrentUser(null);
     localStorage.removeItem('currentUser');
     setShowUserDropdown(false);
+    setCurrentPage('home');
   };
 
   // Open sign-in modal
@@ -321,47 +322,45 @@ export default function App() {
             <h1 className="text-3xl sm:text-5xl font-bold text-white mb-2 leading-tight">DatabaseWebsite</h1>
             <p className="text-base sm:text-xl text-gray-200 mb-6">Plant & PhytoCompound Research Portal</p>
             
-            {/* Hamburger menu (when logged in) */}
-            {currentUser && (
-              <div className="relative mt-10 sm:mt-12">
-                <button
-                  onClick={() => setShowHamburgerMenu(!showHamburgerMenu)}
-                  className="bg-white/10 hover:bg-white/20 backdrop-blur-sm text-white px-16 py-2 rounded-lg font-semibold border border-white/30 shadow-lg transition-colors flex items-center justify-center"
-                  aria-label="Toggle menu"
-                >
-                  {showHamburgerMenu ? <X className="w-6 h-6" /> : <Menu className="w-8 h-6 scale-x-[1.8]" />}
-                </button>
-                
-                {/* Hamburger Menu Dropdown */}
-                {showHamburgerMenu && (
-                  <div className={`absolute top-full mt-2 left-1/2 -translate-x-1/2 w-64 rounded-lg shadow-xl z-50 ${isDarkMode ? 'bg-gray-800 border-gray-700' : 'bg-white'} border`}>
-                    <nav className="py-2">
-                      <button onClick={() => handleNavigate('home')} className={`w-full text-left block px-4 py-3 transition-colors ${isDarkMode ? 'text-gray-300 hover:bg-gray-700' : 'text-gray-700 hover:bg-gray-100'}`}>
-                        Home
-                      </button>
-                      <button onClick={() => handleNavigate('browse')} className={`w-full text-left block px-4 py-3 transition-colors ${isDarkMode ? 'text-gray-300 hover:bg-gray-700' : 'text-gray-700 hover:bg-gray-100'}`}>
-                        Browse
-                      </button>
-                      <button onClick={() => handleNavigate('search')} className={`w-full text-left block px-4 py-3 transition-colors ${isDarkMode ? 'text-gray-300 hover:bg-gray-700' : 'text-gray-700 hover:bg-gray-100'}`}>
-                        Search
-                      </button>
-                      <button onClick={() => handleNavigate('help')} className={`w-full text-left block px-4 py-3 transition-colors ${isDarkMode ? 'text-gray-300 hover:bg-gray-700' : 'text-gray-700 hover:bg-gray-100'}`}>
-                        Help
-                      </button>
-                      <button onClick={() => handleNavigate('citation')} className={`w-full text-left block px-4 py-3 transition-colors ${isDarkMode ? 'text-gray-300 hover:bg-gray-700' : 'text-gray-700 hover:bg-gray-100'}`}>
-                        Citation
-                      </button>
-                      <button onClick={() => handleNavigate('contact')} className={`w-full text-left block px-4 py-3 transition-colors ${isDarkMode ? 'text-gray-300 hover:bg-gray-700' : 'text-gray-700 hover:bg-gray-100'}`}>
-                        Contact
-                      </button>
-                      <button onClick={() => handleNavigate('acknowledgement')} className={`w-full text-left block px-4 py-3 transition-colors ${isDarkMode ? 'text-gray-300 hover:bg-gray-700' : 'text-gray-700 hover:bg-gray-100'}`}>
-                        Acknowledgement
-                      </button>
-                    </nav>
-                  </div>
-                )}
-              </div>
-            )}
+            {/* Hamburger menu (always visible) */}
+            <div className="relative mt-10 sm:mt-12">
+              <button
+                onClick={() => setShowHamburgerMenu(!showHamburgerMenu)}
+                className="bg-white/10 hover:bg-white/20 backdrop-blur-sm text-white px-16 py-2 rounded-lg font-semibold border border-white/30 shadow-lg transition-colors flex items-center justify-center"
+                aria-label="Toggle menu"
+              >
+                {showHamburgerMenu ? <X className="w-6 h-6" /> : <Menu className="w-8 h-6 scale-x-[1.8]" />}
+              </button>
+              
+              {/* Hamburger Menu Dropdown */}
+              {showHamburgerMenu && (
+                <div className={`absolute top-full mt-2 left-1/2 -translate-x-1/2 w-64 rounded-lg shadow-xl z-50 ${isDarkMode ? 'bg-gray-800 border-gray-700' : 'bg-white'} border`}>
+                  <nav className="py-2">
+                    <button onClick={() => handleNavigate('home')} className={`w-full text-left block px-4 py-3 transition-colors ${isDarkMode ? 'text-gray-300 hover:bg-gray-700' : 'text-gray-700 hover:bg-gray-100'}`}>
+                      Home
+                    </button>
+                    <button onClick={() => handleNavigate('browse')} className={`w-full text-left block px-4 py-3 transition-colors ${isDarkMode ? 'text-gray-300 hover:bg-gray-700' : 'text-gray-700 hover:bg-gray-100'}`}>
+                      Browse
+                    </button>
+                    <button onClick={() => handleNavigate('search')} className={`w-full text-left block px-4 py-3 transition-colors ${isDarkMode ? 'text-gray-300 hover:bg-gray-700' : 'text-gray-700 hover:bg-gray-100'}`}>
+                      Search
+                    </button>
+                    <button onClick={() => handleNavigate('help')} className={`w-full text-left block px-4 py-3 transition-colors ${isDarkMode ? 'text-gray-300 hover:bg-gray-700' : 'text-gray-700 hover:bg-gray-100'}`}>
+                      Help
+                    </button>
+                    <button onClick={() => handleNavigate('citation')} className={`w-full text-left block px-4 py-3 transition-colors ${isDarkMode ? 'text-gray-300 hover:bg-gray-700' : 'text-gray-700 hover:bg-gray-100'}`}>
+                      Citation
+                    </button>
+                    <button onClick={() => handleNavigate('contact')} className={`w-full text-left block px-4 py-3 transition-colors ${isDarkMode ? 'text-gray-300 hover:bg-gray-700' : 'text-gray-700 hover:bg-gray-100'}`}>
+                      Contact
+                    </button>
+                    <button onClick={() => handleNavigate('acknowledgement')} className={`w-full text-left block px-4 py-3 transition-colors ${isDarkMode ? 'text-gray-300 hover:bg-gray-700' : 'text-gray-700 hover:bg-gray-100'}`}>
+                      Acknowledgement
+                    </button>
+                  </nav>
+                </div>
+              )}
+            </div>
           </div>
         </div>
       </header>
