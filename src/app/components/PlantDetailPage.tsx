@@ -9,8 +9,8 @@ interface PlantDetailPageProps {
 
 export function PlantDetailPage({ plant, isDarkMode, onBack }: PlantDetailPageProps) {
   return (
-    <div className={`min-h-screen ${isDarkMode ? 'bg-gray-900' : 'bg-gray-50'} py-12`}>
-      <div className="max-w-4xl mx-auto px-8">
+    <div className={`min-h-screen ${isDarkMode ? 'bg-gray-900' : 'bg-gray-50'} py-8 sm:py-12`}>
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <button
           onClick={onBack}
           className={`flex items-center gap-2 mb-6 px-4 py-2 rounded-lg transition-colors ${
@@ -29,10 +29,10 @@ export function PlantDetailPage({ plant, isDarkMode, onBack }: PlantDetailPagePr
               <Leaf className={`w-8 h-8 ${isDarkMode ? 'text-green-400' : 'text-green-600'}`} />
             </div>
             <div className="flex-1">
-              <h1 className={`text-4xl font-bold mb-2 ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
+              <h1 className={`text-2xl sm:text-4xl font-bold mb-2 ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
                 {plant.name}
               </h1>
-              <p className={`text-xl italic ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>
+              <p className={`text-base sm:text-xl italic ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>
                 {plant.scientificName}
               </p>
             </div>

@@ -66,9 +66,9 @@ export function SearchPage({ isDarkMode, onNavigate }: SearchPageProps) {
   };
 
   return (
-    <div className={`min-h-screen ${isDarkMode ? 'bg-gray-900' : 'bg-gray-50'} py-12`}>
-      <div className="max-w-4xl mx-auto px-8">
-        <h1 className={`text-4xl font-bold mb-8 ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
+    <div className={`min-h-screen ${isDarkMode ? 'bg-gray-900' : 'bg-gray-50'} py-8 sm:py-12`}>
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h1 className={`text-2xl sm:text-4xl font-bold mb-8 ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
           Search Database
         </h1>
         
@@ -86,14 +86,14 @@ export function SearchPage({ isDarkMode, onNavigate }: SearchPageProps) {
             
             <div className="relative">
               <div className="relative">
-                <Search className={`absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`} />
+                <Search className={`absolute left-3 sm:left-4 top-1/2 transform -translate-y-1/2 w-4 sm:w-5 h-4 sm:h-5 ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`} />
                 <input
                   type="text"
                   value={plantQuery}
                   onChange={(e) => setPlantQuery(e.target.value)}
                   onFocus={() => plantSuggestions.length > 0 && setShowPlantSuggestions(true)}
                   placeholder="Type plant name or scientific name..."
-                  className={`w-full pl-12 pr-4 py-4 rounded-lg border ${
+                  className={`w-full pl-10 sm:pl-12 pr-4 py-3 sm:py-4 rounded-lg border ${
                     isDarkMode 
                       ? 'bg-gray-700 border-gray-600 text-white placeholder-gray-400' 
                       : 'bg-white border-gray-300 text-gray-900 placeholder-gray-500'
@@ -145,14 +145,14 @@ export function SearchPage({ isDarkMode, onNavigate }: SearchPageProps) {
             
             <div className="relative">
               <div className="relative">
-                <Search className={`absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`} />
+                <Search className={`absolute left-3 sm:left-4 top-1/2 transform -translate-y-1/2 w-4 sm:w-5 h-4 sm:h-5 ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`} />
                 <input
                   type="text"
                   value={compoundQuery}
                   onChange={(e) => setCompoundQuery(e.target.value)}
                   onFocus={() => compoundSuggestions.length > 0 && setShowCompoundSuggestions(true)}
                   placeholder="Type compound name or formula..."
-                  className={`w-full pl-12 pr-4 py-4 rounded-lg border ${
+                  className={`w-full pl-10 sm:pl-12 pr-4 py-3 sm:py-4 rounded-lg border ${
                     isDarkMode 
                       ? 'bg-gray-700 border-gray-600 text-white placeholder-gray-400' 
                       : 'bg-white border-gray-300 text-gray-900 placeholder-gray-500'

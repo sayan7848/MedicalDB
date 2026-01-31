@@ -45,10 +45,10 @@ export function AppRouter({ currentPage, isDarkMode, selectedPlant, selectedComp
   
   // Default home page
   return (
-    <div className="relative max-w-7xl mx-auto px-8 py-20">
-      <h2 className={`text-3xl font-bold mb-8 text-center ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>Available Functions</h2>
+    <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-20">
+      <h2 className={`text-2xl sm:text-3xl font-bold mb-8 text-center ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>Available Functions</h2>
       
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto px-2 sm:px-0">
         {/* Search Plant */}
         <div 
           onClick={() => onNavigate('search')}
