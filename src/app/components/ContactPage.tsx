@@ -6,7 +6,7 @@ interface ContactPageProps {
 
 export function ContactPage({ isDarkMode }: ContactPageProps) {
   return (
-    <div className={`min-h-full ${isDarkMode ? 'bg-gray-900' : 'bg-gray-50'} py-12 px-8`}>
+    <div className={`min-h-full ${isDarkMode ? 'bg-gray-900' : 'bg-gray-50'} py-12 px-4 sm:px-8`}>
       <div className="max-w-4xl mx-auto">
         <h1 className={`text-4xl font-bold mb-8 ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>Contact</h1>
         

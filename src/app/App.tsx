@@ -236,12 +236,12 @@ export default function App() {
   return (
     <div className={`min-h-screen flex flex-col ${isDarkMode ? 'bg-gray-900' : 'bg-gray-50'}`}>
       {/* Header with institution background */}
-      <header className="relative h-96 bg-cover bg-center" style={{ backgroundImage: `url('${headerBg}')` }}>
+      <header className="relative h-72 sm:h-96 bg-cover bg-center" style={{ backgroundImage: `url('${headerBg}')` }}>
         {/* Overlay for better text readability */}
         <div className="absolute inset-0 bg-black/50"></div>
         
         {/* Header content */}
-        <div className="relative h-full flex flex-col px-8 max-w-7xl mx-auto">
+        <div className="relative h-full flex flex-col px-4 sm:px-8 max-w-7xl mx-auto">
           {/* Top row - Two column layout */}
           <div className="flex items-start justify-between pt-6">
             {/* Left side - VIT Logo only */}
@@ -249,19 +249,19 @@ export default function App() {
               <img 
                 src={vitLogo}
                 alt="VIT Logo"
-                className="h-24 object-contain drop-shadow-lg"
+                className="h-12 sm:h-24 object-contain drop-shadow-lg"
               />
             </div>
             
             {/* Right side - Dark mode toggle and Auth buttons */}
             <div className="flex-shrink-0">
-              <div className="flex items-center gap-3">
+              <div className="flex items-center gap-2 sm:gap-3">
                 {currentUser ? (
                   /* User dropdown */
                   <div className="relative">
                     <button
                       onClick={() => setShowUserDropdown(!showUserDropdown)}
-                      className="bg-white/10 hover:bg-white/20 backdrop-blur-sm text-white px-6 py-3 rounded-lg font-semibold border border-white/30 shadow-lg transition-colors flex items-center gap-2"
+                      className="bg-white/10 hover:bg-white/20 backdrop-blur-sm text-white px-3 sm:px-6 py-2 sm:py-3 rounded-lg font-semibold border border-white/30 shadow-lg transition-colors flex items-center gap-2 text-sm sm:text-base"
                     >
                       <User className="w-5 h-5" />
                       <span>{currentUser.email}</span>
@@ -286,11 +286,11 @@ export default function App() {
                     )}
                   </div>
                 ) : (
-                  <>
+                    <>
                     {/* Sign-in button */}
                     <button 
                       onClick={openSignInModal}
-                      className="bg-white/10 hover:bg-white/20 backdrop-blur-sm text-white px-6 py-3 rounded-lg font-semibold border border-white/30 shadow-lg transition-colors"
+                      className="bg-white/10 hover:bg-white/20 backdrop-blur-sm text-white px-3 sm:px-6 py-2 sm:py-3 rounded-lg font-semibold border border-white/30 shadow-lg transition-colors text-sm sm:text-base"
                     >
                       Sign In
                     </button>
@@ -298,7 +298,7 @@ export default function App() {
                     {/* Sign-up button */}
                     <button 
                       onClick={() => setShowSignUpModal(true)}
-                      className="bg-white/10 hover:bg-white/20 backdrop-blur-sm text-white px-6 py-3 rounded-lg font-semibold border border-white/30 shadow-lg transition-colors"
+                      className="bg-white/10 hover:bg-white/20 backdrop-blur-sm text-white px-3 sm:px-6 py-2 sm:py-3 rounded-lg font-semibold border border-white/30 shadow-lg transition-colors text-sm sm:text-base"
                     >
                       Sign Up
                     </button>
@@ -307,7 +307,7 @@ export default function App() {
                 {/* Dark mode toggle */}
                 <button
                   onClick={toggleDarkMode}
-                  className="bg-white/20 hover:bg-white/30 backdrop-blur-sm text-white p-3 rounded-lg shadow-lg transition-colors"
+                  className="bg-white/20 hover:bg-white/30 backdrop-blur-sm text-white p-2 sm:p-3 rounded-lg shadow-lg transition-colors"
                   aria-label="Toggle dark mode"
                 >
                   {isDarkMode ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
@@ -317,16 +317,16 @@ export default function App() {
           </div>
           
           {/* Center content - Website name and description (moved down) */}
-          <div className="flex-grow flex flex-col items-center justify-center">
-            <h1 className="text-5xl font-bold text-white mb-2">DatabaseWebsite</h1>
-            <p className="text-xl text-gray-200">Plant & PhytoCompound Research Portal</p>
+          <div className="flex-grow flex flex-col items-center justify-center px-2 text-center">
+            <h1 className="text-3xl sm:text-5xl font-bold text-white mb-2 leading-tight">DatabaseWebsite</h1>
+            <p className="text-base sm:text-xl text-gray-200">Plant & PhytoCompound Research Portal</p>
           </div>
         </div>
       </header>
 
       {/* Database Description Section */}
       <section className={`relative py-8 shadow-md ${isDarkMode ? 'bg-gray-800' : 'bg-white'}`}>
-        <div className="max-w-7xl mx-auto px-8">
+        <div className="max-w-7xl mx-auto px-4 sm:px-8">
           <div className="flex items-start gap-6">
             {/* Hamburger menu (when logged in) */}
             {currentUser && (
@@ -371,8 +371,8 @@ export default function App() {
             )}
             
             {/* Description text */}
-            <div className="flex-grow text-center">
-              <p className={`text-lg leading-relaxed ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>
+            <div className="flex-grow text-center px-2">
+              <p className={`text-base sm:text-lg leading-relaxed ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>
                 Welcome to DatabaseWebsite, a comprehensive research platform dedicated to botanical sciences and phytochemistry. 
                 This database provides detailed information on medicinal plant species and their phytochemical compounds, 
                 supporting advanced research in pharmacology, ethnobotany, and natural product chemistry.
@@ -419,10 +419,10 @@ export default function App() {
             <div className={`absolute inset-0 ${isDarkMode ? 'bg-gray-900/80' : 'bg-white/80'}`}></div>
             
             {/* Content */}
-            <div className="relative max-w-7xl mx-auto px-8 py-20">
-              <h2 className={`text-3xl font-bold mb-8 text-center ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>Available Functions</h2>
+            <div className="relative max-w-7xl mx-auto px-4 sm:px-8 py-12 sm:py-20">
+              <h2 className={`text-2xl sm:text-3xl font-bold mb-8 text-center ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>Available Functions</h2>
               
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto px-2 sm:px-0">
                 {/* Search Plant */}
                 <div onClick={() => handleNavigate('search')} className={`rounded-xl shadow-lg p-8 hover:shadow-xl transition-shadow cursor-pointer ${isDarkMode ? 'bg-gray-800 border-gray-700' : 'bg-white border-gray-200'} border`}>
                   <div className="flex items-center justify-center mb-6">
@@ -456,7 +456,7 @@ export default function App() {
 
       {/* Footer */}
       <footer className="bg-gray-900 text-white py-6">
-        <div className="max-w-7xl mx-auto px-8">
+        <div className="max-w-7xl mx-auto px-4 sm:px-8">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {/* Website Info */}
             <div>
