@@ -6,6 +6,7 @@ import { PlantDetailPage } from "@/app/components/PlantDetailPage";
 import { CompoundDetailPage } from "@/app/components/CompoundDetailPage";
 import { Plant, PhytoCompound } from "@/app/data/mockData";
 import { Search, FlaskConical } from "lucide-react";
+import { ExperimentalDataPage } from "@/app/components/ExperimentalDataPage";
 
 interface AppRouterProps {
   currentPage: string;
@@ -25,6 +26,10 @@ export function AppRouter({ currentPage, isDarkMode, selectedPlant, selectedComp
   
   if (currentPage === 'search') {
     return <SearchPage isDarkMode={isDarkMode} onNavigate={onNavigate} onBack={onBack} />;
+  }
+
+  if (currentPage === 'experiment') {
+    return <ExperimentalDataPage isDarkMode={isDarkMode} onBack={onBack} />;
   }
   
   if (currentPage === 'help') {
