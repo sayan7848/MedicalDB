@@ -7,7 +7,7 @@ interface ContactPageProps {
 
 export function ContactPage({ isDarkMode, onBack }: ContactPageProps) {
   return (
-    <div className={`min-h-full ${isDarkMode ? 'bg-gray-900' : 'bg-gray-50'} py-12 px-4 sm:px-8`}>
+    <div className={`py-12 px-4 sm:px-8`}>
       <div className="max-w-4xl mx-auto">
         <button
           onClick={onBack}

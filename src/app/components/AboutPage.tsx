@@ -7,7 +7,7 @@ interface AboutPageProps {
 
 export function AboutPage({ isDarkMode, onBack }: AboutPageProps) {
     return (
-        <div className={`min-h-screen ${isDarkMode ? 'bg-gray-900' : 'bg-gray-50'} py-8 sm:py-12`}>
+        <div className={`py-8 sm:py-12`}>
             <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
                 <button
                     onClick={onBack}

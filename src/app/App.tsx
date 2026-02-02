@@ -13,6 +13,11 @@ import { Plant, PhytoCompound } from "@/app/data/mockData";
 import vitLogo from "@/assets/425314c8321c30346a324b0b3dce365185965331.png";
 import headerBg from "@/assets/6abdbe5a9ca4f7200906e3e2f5e6b79252364bb0.png";
 import { ExperimentalDataPage } from "@/app/components/ExperimentalDataPage";
+import bg1 from "@/assets/bg-1.jpg";
+import bg2 from "@/assets/bg-2.jpg";
+import bg3 from "@/assets/bg-3.jpg";
+import bg4 from "@/assets/bg-4.jpg";
+import bg5 from "@/assets/bg-5.jpg";
 
 interface UserData {
     name: string;
@@ -24,13 +29,7 @@ interface UserData {
 
 export default function App() {
     // Header and logo images
-    const backgroundImages = [
-        "https://images.unsplash.com/photo-1611865445506-b45f9f119080?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtZWRpY2luYWwlMjBwbGFudHMlMjBoZXJic3xlbnwxfHx8fDE3Njk3MDIyNTV8MA&ixlib=rb-4.1.0&q=80&w=1080",
-        "https://images.unsplash.com/photo-1669344319065-61282714d7ce?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxwaHl0b2NoZW1pc3RyeSUyMGxhYm9yYXRvcnklMjBjb21wb3VuZHN8ZW58MXx8fHwxNzY5NzAyMjU1fDA&ixlib=rb-4.1.0&q=80&w=1080",
-        "https://images.unsplash.com/photo-1659328376647-52ec39d1a5cf?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxoZXJiYWwlMjBtZWRpY2luZSUyMHBsYW50c3xlbnwxfHx8fDE3Njk3MDIyNTZ8MA&ixlib=rb-4.1.0&q=80&w=1080",
-        "https://images.unsplash.com/photo-1668932105708-4fb4eb8eb012?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxib3RhbmljYWwlMjByZXNlYXJjaCUyMG1pY3Jvc2NvcGV8ZW58MXx8fHwxNzY5NzAyMjU2fDA&ixlib=rb-4.1.0&q=80&w=1080",
-        "https://images.unsplash.com/photo-1718105019708-9d41f411a405?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxncmVlbiUyMGhlcmJzJTIwbWVkaWNpbmFsfGVufDF8fHx8MTc2OTcwMjI1Nnww&ixlib=rb-4.1.0&q=80&w=1080"
-    ];
+    const backgroundImages = [bg1, bg2, bg3, bg4, bg5];
 
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
     const [isDarkMode, setIsDarkMode] = useState(() => {
@@ -387,78 +386,80 @@ export default function App() {
 
             {/* Main content - Functionality list with dynamic background */}
             <main className="relative flex-grow overflow-hidden">
+                {/* Dynamic background images with transition */}
+                {backgroundImages.map((image, index) => (
+                    <div
+                        key={index}
+                        className="absolute inset-0 bg-cover bg-center transition-opacity duration-1000"
+                        style={{
+                            backgroundImage: `url('${image}')`,
+                            opacity: currentImageIndex === index ? 1 : 0,
+                        }}
+                    />
+                ))}
+
+                {/* Overlay for better content readability */}
+                <div className={`absolute inset-0 ${isDarkMode ? 'bg-gray-900/80' : 'bg-white/80'}`}></div>
+
                 {/* Conditional rendering based on current page */}
-                {currentPage === 'browse' ? (
-                    <BrowsePage isDarkMode={isDarkMode} onNavigate={handleNavigate} onBack={handleBack} />
-                ) : currentPage === 'search' ? (
-                    <SearchPage isDarkMode={isDarkMode} onNavigate={handleNavigate} onBack={handleBack} />
-                ) : currentPage === 'experiment' ? (
-                    <ExperimentalDataPage isDarkMode={isDarkMode} onBack={handleBack} />
-                ) : currentPage === 'help' ? (
-                    <HelpPage isDarkMode={isDarkMode} onBack={handleBack} />
-                ) : currentPage === 'citation' ? (
-                    <CitationPage isDarkMode={isDarkMode} onBack={handleBack} />
-                ) : currentPage === 'plant-detail' && selectedPlant ? (
-                    <PlantDetailPage plant={selectedPlant} isDarkMode={isDarkMode} onBack={handleBack} />
-                ) : currentPage === 'compound-detail' && selectedCompound ? (
-                    <CompoundDetailPage compound={selectedCompound} isDarkMode={isDarkMode} onBack={handleBack} />
-                ) : currentPage === 'contact' ? (
-                    <ContactPage isDarkMode={isDarkMode} onBack={handleBack} />
-                ) : currentPage === 'acknowledgement' ? (
-                    <AcknowledgementPage isDarkMode={isDarkMode} onBack={handleBack} />
-                ) : currentPage === 'about' ? (
-                    <AboutPage isDarkMode={isDarkMode} onBack={handleBack} />
-                ) : (
-                    <>
-                        {/* Dynamic background images with transition */}
-                        {backgroundImages.map((image, index) => (
-                            <div
-                                key={index}
-                                className="absolute inset-0 bg-cover bg-center transition-opacity duration-1000"
-                                style={{
-                                    backgroundImage: `url('${image}')`,
-                                    opacity: currentImageIndex === index ? 1 : 0,
-                                }}
-                            />
-                        ))}
+                <div className="relative">
+                    {currentPage === 'browse' ? (
+                        <BrowsePage isDarkMode={isDarkMode} onNavigate={handleNavigate} onBack={handleBack} />
+                    ) : currentPage === 'search' ? (
+                        <SearchPage isDarkMode={isDarkMode} onNavigate={handleNavigate} onBack={handleBack} />
+                    ) : currentPage === 'experiment' ? (
+                        <ExperimentalDataPage isDarkMode={isDarkMode} onBack={handleBack} />
+                    ) : currentPage === 'help' ? (
+                        <HelpPage isDarkMode={isDarkMode} onBack={handleBack} />
+                    ) : currentPage === 'citation' ? (
+                        <CitationPage isDarkMode={isDarkMode} onBack={handleBack} />
+                    ) : currentPage === 'plant-detail' && selectedPlant ? (
+                        <PlantDetailPage plant={selectedPlant} isDarkMode={isDarkMode} onBack={handleBack} />
+                    ) : currentPage === 'compound-detail' && selectedCompound ? (
+                        <CompoundDetailPage compound={selectedCompound} isDarkMode={isDarkMode} onBack={handleBack} />
+                    ) : currentPage === 'contact' ? (
+                        <ContactPage isDarkMode={isDarkMode} onBack={handleBack} />
+                    ) : currentPage === 'acknowledgement' ? (
+                        <AcknowledgementPage isDarkMode={isDarkMode} onBack={handleBack} />
+                    ) : currentPage === 'about' ? (
+                        <AboutPage isDarkMode={isDarkMode} onBack={handleBack} />
+                    ) : (
+                        <>
+                            {/* Content */}
+                            <div className="relative max-w-7xl mx-auto px-4 sm:px-8 py-12 sm:py-20">
+                                <h2 className={`text-2xl sm:text-3xl font-bold mb-8 text-center ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>Available Functions</h2>
 
-                        {/* Overlay for better content readability */}
-                        <div className={`absolute inset-0 ${isDarkMode ? 'bg-gray-900/80' : 'bg-white/80'}`}></div>
-
-                        {/* Content */}
-                        <div className="relative max-w-7xl mx-auto px-4 sm:px-8 py-12 sm:py-20">
-                            <h2 className={`text-2xl sm:text-3xl font-bold mb-8 text-center ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>Available Functions</h2>
-
-                            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto px-2 sm:px-0">
-                                {/* Search Plant */}
-                                <div onClick={() => handleNavigate('search')} className={`rounded-xl shadow-lg p-8 hover:shadow-xl transition-shadow cursor-pointer ${isDarkMode ? 'bg-gray-800 border-gray-700' : 'bg-white border-gray-200'} border`}>
-                                    <div className="flex items-center justify-center mb-6">
-                                        <div className={`p-4 rounded-full ${isDarkMode ? 'bg-green-900/50' : 'bg-green-100'}`}>
-                                            <Search className={`w-12 h-12 ${isDarkMode ? 'text-green-400' : 'text-green-600'}`} />
+                                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto px-2 sm:px-0">
+                                    {/* Search Plant */}
+                                    <div onClick={() => handleNavigate('search')} className={`rounded-xl shadow-lg p-8 hover:shadow-xl transition-shadow cursor-pointer ${isDarkMode ? 'bg-gray-800 border-gray-700' : 'bg-white border-gray-200'} border`}>
+                                        <div className="flex items-center justify-center mb-6">
+                                            <div className={`p-4 rounded-full ${isDarkMode ? 'bg-green-900/50' : 'bg-green-100'}`}>
+                                                <Search className={`w-12 h-12 ${isDarkMode ? 'text-green-400' : 'text-green-600'}`} />
+                                            </div>
                                         </div>
+                                        <h3 className={`text-2xl font-bold mb-3 text-center ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>Search Plant</h3>
+                                        <p className={`text-center ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>
+                                            Explore our comprehensive database of plant species with detailed botanical information and research data.
+                                        </p>
                                     </div>
-                                    <h3 className={`text-2xl font-bold mb-3 text-center ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>Search Plant</h3>
-                                    <p className={`text-center ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>
-                                        Explore our comprehensive database of plant species with detailed botanical information and research data.
-                                    </p>
-                                </div>
 
-                                {/* Search PhytoCompounds */}
-                                <div onClick={() => handleNavigate('search')} className={`rounded-xl shadow-lg p-8 hover:shadow-xl transition-shadow cursor-pointer ${isDarkMode ? 'bg-gray-800 border-gray-700' : 'bg-white border-gray-200'} border`}>
-                                    <div className="flex items-center justify-center mb-6">
-                                        <div className={`p-4 rounded-full ${isDarkMode ? 'bg-blue-900/50' : 'bg-blue-100'}`}>
-                                            <FlaskConical className={`w-12 h-12 ${isDarkMode ? 'text-blue-400' : 'text-blue-600'}`} />
+                                    {/* Search PhytoCompounds */}
+                                    <div onClick={() => handleNavigate('search')} className={`rounded-xl shadow-lg p-8 hover:shadow-xl transition-shadow cursor-pointer ${isDarkMode ? 'bg-gray-800 border-gray-700' : 'bg-white border-gray-200'} border`}>
+                                        <div className="flex items-center justify-center mb-6">
+                                            <div className={`p-4 rounded-full ${isDarkMode ? 'bg-blue-900/50' : 'bg-blue-100'}`}>
+                                                <FlaskConical className={`w-12 h-12 ${isDarkMode ? 'text-blue-400' : 'text-blue-600'}`} />
+                                            </div>
                                         </div>
+                                        <h3 className={`text-2xl font-bold mb-3 text-center ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>Search PhytoCompounds</h3>
+                                        <p className={`text-center ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>
+                                            Access detailed information on phytochemical compounds, their properties, and scientific applications.
+                                        </p>
                                     </div>
-                                    <h3 className={`text-2xl font-bold mb-3 text-center ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>Search PhytoCompounds</h3>
-                                    <p className={`text-center ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>
-                                        Access detailed information on phytochemical compounds, their properties, and scientific applications.
-                                    </p>
                                 </div>
                             </div>
-                        </div>
-                    </>
-                )}
+                        </>
+                    )}
+                </div>
             </main>
 
             {/* Footer */}
