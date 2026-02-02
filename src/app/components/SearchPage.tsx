@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { plants, phytoCompounds, Plant, PhytoCompound } from "@/app/data/mockData";
 import { Search, Leaf, FlaskConical, ArrowLeft } from "lucide-react";
 import Fuse from "fuse.js";
@@ -16,6 +16,8 @@ export function SearchPage({ isDarkMode, onNavigate, onBack }: SearchPageProps) 
   const [compoundSuggestions, setCompoundSuggestions] = useState<PhytoCompound[]>([]);
   const [showPlantSuggestions, setShowPlantSuggestions] = useState(false);
   const [showCompoundSuggestions, setShowCompoundSuggestions] = useState(false);
+  const plantWrapperRef = useRef<HTMLDivElement | null>(null);
+  const compoundWrapperRef = useRef<HTMLDivElement | null>(null);
 
   // Fuse.js setup for fuzzy search
   const plantFuse = new Fuse(plants, {
@@ -53,6 +55,32 @@ export function SearchPage({ isDarkMode, onNavigate, onBack }: SearchPageProps) 
       setShowCompoundSuggestions(false);
     }
   }, [compoundQuery]);
+
+  // Dismiss suggestions when clicking outside their containers
+  useEffect(() => {
+    function handleClickOutside(e: MouseEvent) {
+      const target = e.target as Node;
+      if (showPlantSuggestions && plantWrapperRef.current && !plantWrapperRef.current.contains(target)) {
+        setShowPlantSuggestions(false);
+      }
+      if (showCompoundSuggestions && compoundWrapperRef.current && !compoundWrapperRef.current.contains(target)) {
+        setShowCompoundSuggestions(false);
+      }
+    }
+    function handleKeyDown(e: KeyboardEvent) {
+      if (e.key === 'Escape' || e.key === 'Esc') {
+        setShowPlantSuggestions(false);
+        setShowCompoundSuggestions(false);
+      }
+    }
+
+    document.addEventListener('mousedown', handleClickOutside);
+    document.addEventListener('keydown', handleKeyDown);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [showPlantSuggestions, showCompoundSuggestions]);
 
   const handlePlantSelect = (plant: Plant) => {
     setPlantQuery(plant.name);
@@ -96,7 +124,7 @@ export function SearchPage({ isDarkMode, onNavigate, onBack }: SearchPageProps) 
               </h2>
             </div>
             
-            <div className="relative">
+            <div className="relative" ref={plantWrapperRef}>
               <div className="relative">
                 <Search className={`absolute left-3 sm:left-4 top-1/2 transform -translate-y-1/2 w-4 sm:w-5 h-4 sm:h-5 ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`} />
                 <input
@@ -155,7 +183,7 @@ export function SearchPage({ isDarkMode, onNavigate, onBack }: SearchPageProps) 
               </h2>
             </div>
             
-            <div className="relative">
+            <div className="relative" ref={compoundWrapperRef}>
               <div className="relative">
                 <Search className={`absolute left-3 sm:left-4 top-1/2 transform -translate-y-1/2 w-4 sm:w-5 h-4 sm:h-5 ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`} />
                 <input
