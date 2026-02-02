@@ -67,10 +67,16 @@ export default function App() {
     const [signUpError, setSignUpError] = useState('');
 
     // Navigation states
-    const [currentPage, setCurrentPage] = useState<'home' | 'browse' | 'search' | 'experiment' | 'help' | 'citation' | 'plant-detail' | 'compound-detail' | 'contact' | 'acknowledgement' | 'about'>('home');
-    const [previousPage, setPreviousPage] = useState<'home' | 'browse' | 'search' | 'help'>('home');
-    const [selectedPlant, setSelectedPlant] = useState<Plant | null>(null);
-    const [selectedCompound, setSelectedCompound] = useState<PhytoCompound | null>(null);
+    const [navigationStack, setNavigationStack] = useState<{
+        page: 'home' | 'browse' | 'search' | 'experiment' | 'help' | 'citation' | 'plant-detail' | 'compound-detail' | 'contact' | 'acknowledgement' | 'about';
+        selectedPlant: Plant | null;
+        selectedCompound: PhytoCompound | null;
+    }[]>([{ page: 'home', selectedPlant: null, selectedCompound: null }]);
+
+    const currentNav = navigationStack[navigationStack.length - 1];
+    const currentPage = currentNav.page;
+    const selectedPlant = currentNav.selectedPlant;
+    const selectedCompound = currentNav.selectedCompound;
 
     useEffect(() => {
         const interval = setInterval(() => {
@@ -178,7 +184,7 @@ export default function App() {
         setCurrentUser(null);
         localStorage.removeItem('currentUser');
         setShowUserDropdown(false);
-        setCurrentPage('home');
+        setNavigationStack([{ page: 'home', selectedPlant: null, selectedCompound: null }]);
     };
 
     // Open sign-in modal
@@ -213,26 +219,29 @@ export default function App() {
             return;
         }
 
-        if (page === 'plant-detail' && data) {
-            // Save current page as previous before navigating to detail
-            setPreviousPage(currentPage as 'home' | 'browse' | 'search' | 'help');
-            setSelectedPlant(data as Plant);
-            setCurrentPage('plant-detail');
-        } else if (page === 'compound-detail' && data) {
-            // Save current page as previous before navigating to detail
-            setPreviousPage(currentPage as 'home' | 'browse' | 'search' | 'help');
-            setSelectedCompound(data as PhytoCompound);
-            setCurrentPage('compound-detail');
-        } else {
-            setCurrentPage(page as any);
+        const newPage = page as any;
+        let newPlant = null;
+        let newCompound = null;
+
+        if (newPage === 'plant-detail' && data) {
+            newPlant = data as Plant;
+        } else if (newPage === 'compound-detail' && data) {
+            newCompound = data as PhytoCompound;
         }
+
+        setNavigationStack(prev => [...prev, {
+            page: newPage,
+            selectedPlant: newPlant,
+            selectedCompound: newCompound
+        }]);
+        
         setShowHamburgerMenu(false);
     };
 
     const handleBack = () => {
-        setCurrentPage(previousPage);
-        setSelectedPlant(null);
-        setSelectedCompound(null);
+        if (navigationStack.length > 1) {
+            setNavigationStack(prev => prev.slice(0, -1));
+        }
     };
 
     return (
@@ -414,9 +423,9 @@ export default function App() {
                     ) : currentPage === 'citation' ? (
                         <CitationPage isDarkMode={isDarkMode} onBack={handleBack} />
                     ) : currentPage === 'plant-detail' && selectedPlant ? (
-                        <PlantDetailPage plant={selectedPlant} isDarkMode={isDarkMode} onBack={handleBack} />
+                        <PlantDetailPage plant={selectedPlant} isDarkMode={isDarkMode} onBack={handleBack} onNavigate={handleNavigate} />
                     ) : currentPage === 'compound-detail' && selectedCompound ? (
-                        <CompoundDetailPage compound={selectedCompound} isDarkMode={isDarkMode} onBack={handleBack} />
+                        <CompoundDetailPage compound={selectedCompound} isDarkMode={isDarkMode} onBack={handleBack} onNavigate={handleNavigate} />
                     ) : currentPage === 'contact' ? (
                         <ContactPage isDarkMode={isDarkMode} onBack={handleBack} />
                     ) : currentPage === 'acknowledgement' ? (

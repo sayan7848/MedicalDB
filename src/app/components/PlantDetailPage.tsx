@@ -1,13 +1,14 @@
-import { Plant } from "@/app/data/mockData";
+import { Plant, PhytoCompound, phytoCompounds } from "@/app/data/mockData";
 import { ArrowLeft, Leaf } from "lucide-react";
 
 interface PlantDetailPageProps {
   plant: Plant;
   isDarkMode: boolean;
   onBack: () => void;
+  onNavigate: (page: string, data?: Plant | PhytoCompound) => void;
 }
 
-export function PlantDetailPage({ plant, isDarkMode, onBack }: PlantDetailPageProps) {
+export function PlantDetailPage({ plant, isDarkMode, onBack, onNavigate }: PlantDetailPageProps) {
   return (
     <div className={`py-8 sm:py-12`}>
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -86,18 +87,22 @@ export function PlantDetailPage({ plant, isDarkMode, onBack }: PlantDetailPagePr
                 Key PhytoCompounds
               </h2>
               <div className="flex flex-wrap gap-2">
-                {plant.compounds.map((compound, index) => (
-                  <span
-                    key={index}
-                    className={`px-4 py-2 rounded-lg text-sm font-medium ${
-                      isDarkMode 
-                        ? 'bg-blue-900/50 text-blue-300 border border-blue-700' 
-                        : 'bg-blue-100 text-blue-800 border border-blue-200'
-                    }`}
-                  >
-                    {compound}
-                  </span>
-                ))}
+                {plant.compounds.map((compoundName, index) => {
+                  const compoundData = phytoCompounds.find(c => c.name === compoundName);
+                  return (
+                    <span
+                      key={index}
+                      onClick={() => compoundData && onNavigate('compound-detail', compoundData)}
+                      className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
+                        compoundData 
+                          ? `cursor-pointer ${isDarkMode ? 'bg-blue-900/50 text-blue-300 border border-blue-700 hover:bg-blue-800/70' : 'bg-blue-100 text-blue-800 border border-blue-200 hover:bg-blue-200'}`
+                          : `${isDarkMode ? 'bg-gray-700 text-gray-400 border border-gray-600' : 'bg-gray-100 text-gray-500 border border-gray-200'}`
+                      }`}
+                    >
+                      {compoundName}
+                    </span>
+                  );
+                })}
               </div>
             </div>
           </div>

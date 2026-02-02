@@ -41,11 +41,11 @@ export function AppRouter({ currentPage, isDarkMode, selectedPlant, selectedComp
   }
   
   if (currentPage === 'plant-detail' && selectedPlant) {
-    return <PlantDetailPage plant={selectedPlant} isDarkMode={isDarkMode} onBack={onBack} />;
+    return <PlantDetailPage plant={selectedPlant} isDarkMode={isDarkMode} onBack={onBack} onNavigate={onNavigate} />;
   }
   
   if (currentPage === 'compound-detail' && selectedCompound) {
-    return <CompoundDetailPage compound={selectedCompound} isDarkMode={isDarkMode} onBack={onBack} />;
+    return <CompoundDetailPage compound={selectedCompound} isDarkMode={isDarkMode} onBack={onBack} onNavigate={onNavigate} />;
   }
   
   // Default home page
