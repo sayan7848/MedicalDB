@@ -373,6 +373,17 @@ export default function App() {
                 </div>
             </header>
 
+            {/* Database Description Section */}
+            <section className={`relative py-8 shadow-md ${isDarkMode ? 'bg-gray-800' : 'bg-white'}`}>
+                <div className="max-w-7xl mx-auto px-4 sm:px-8">
+                    <div className="text-center px-2">
+                        <p className={`text-base sm:text-lg leading-relaxed ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>
+                            Welcome to DatabaseWebsite, a comprehensive research platform dedicated to botanical sciences and phytochemistry. This database provides detailed information on medicinal plant species and their phytochemical compounds, supporting advanced research in pharmacology, ethnobotany, and natural product chemistry.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
 
             {/* Main content - Functionality list with dynamic background */}
             <main className="relative flex-grow overflow-hidden">
