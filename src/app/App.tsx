@@ -480,18 +480,12 @@ export default function App() {
                             <h3 className="text-lg font-bold mb-2">Contact Maintainer</h3>
                             <div className="space-y-2">
                                 <div className="flex items-center gap-2">
-                                    <Mail className="w-4 h-4 text-green-400" />
-                                    <a href="mailto:maintainer@phytodatabase.edu" className="text-gray-300 hover:text-white transition-colors text-sm">
-                                        maintainer@phytodatabase.edu
-                                    </a>
-                                </div>
-                                <div className="flex items-center gap-2">
                                     <Phone className="w-4 h-4 text-green-400" />
-                                    <span className="text-gray-300 text-sm">+1 (555) 123-4567</span>
+                                    <span className="text-gray-300 text-sm">+91 416-2243091/93</span>
                                 </div>
                                 <div className="flex items-center gap-2">
                                     <MapPin className="w-4 h-4 text-green-400" />
-                                    <span className="text-gray-300 text-sm">Department of Botanical Sciences, University Campus</span>
+                                    <span className="text-gray-300 text-sm">Vellore Institute of Technology, Vellore Campus, Vellore, Tamil Nadu, India, 632014</span>
                                 </div>
                             </div>
                         </div>

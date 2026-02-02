@@ -32,33 +32,29 @@ export function ContactPage({ isDarkMode, onBack }: ContactPageProps) {
             
             <div className="space-y-4">
               <div>
-                <p className={`text-lg font-semibold ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>Your Name</p>
+                <p className={`text-lg font-semibold ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>Shilpa Rudra</p>
                 <p className={`text-sm ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>PhD Scholar</p>
-                <p className={`text-sm ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>Department of Botanical Sciences</p>
-                <p className={`text-sm ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>Vellore Institute of Technology</p>
+                <p className={`text-sm ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>Department of Integrative Biology</p>
+                <p className={`text-sm ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>School of Biosciences and Technology</p>
+                <p className={`text-sm ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>Vellore Institute of Technology, Vellore</p>
               </div>
               
               <div className="pt-4 space-y-3">
                 <div className="flex items-center gap-3">
                   <Mail className="w-5 h-5 text-green-500 flex-shrink-0" />
                   <a 
-                    href="mailto:scholar@vit.edu" 
+                    href="mailto:shilpa.rudra2023@vitstudent.ac.in" 
                     className={`hover:text-green-600 transition-colors ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}
                   >
-                    scholar@vit.edu
+                    shilpa.rudra2023@vitstudent.ac.in
                   </a>
-                </div>
-                
-                <div className="flex items-center gap-3">
-                  <Phone className="w-5 h-5 text-green-500 flex-shrink-0" />
-                  <span className={isDarkMode ? 'text-gray-300' : 'text-gray-700'}>+91 (555) 123-4567</span>
                 </div>
                 
                 <div className="flex items-start gap-3">
                   <MapPin className="w-5 h-5 text-green-500 flex-shrink-0 mt-1" />
                   <span className={isDarkMode ? 'text-gray-300' : 'text-gray-700'}>
                     VIT University, Vellore<br />
-                    Tamil Nadu 632014, India
+                    Tamil Nadu, India, 632014
                   </span>
                 </div>
               </div>
@@ -69,31 +65,32 @@ export function ContactPage({ isDarkMode, onBack }: ContactPageProps) {
           <div className={`rounded-xl shadow-lg p-8 ${isDarkMode ? 'bg-gray-800 border-gray-700' : 'bg-white border-gray-200'} border`}>
             <h2 className={`text-2xl font-bold mb-6 flex items-center gap-2 ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
               <UserIcon className="w-6 h-6 text-purple-500" />
-              Guide
+              Research Guide
             </h2>
             
             <div className="space-y-4">
               <div>
-                <p className={`text-lg font-semibold ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>Dr. Guide Name</p>
-                <p className={`text-sm ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>Professor</p>
+                <p className={`text-lg font-semibold ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>Dr. Danie Kingsley</p>
+                <p className={`text-sm ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>Associate Professor</p>
                 <p className={`text-sm ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>Department of Integrative Biology</p>
-                <p className={`text-sm ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>VIT Vellore</p>
+                <p className={`text-sm ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>School of Biosciences and Technology</p>
+                <p className={`text-sm ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>Vellore Institute of Technology, Vellore</p>
               </div>
               
               <div className="pt-4 space-y-3">
                 <div className="flex items-center gap-3">
                   <Mail className="w-5 h-5 text-purple-500 flex-shrink-0" />
                   <a 
-                    href="mailto:guide@vit.edu" 
+                    href="mailto:j.daniekingsley@vit.ac.in" 
                     className={`hover:text-purple-600 transition-colors ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}
                   >
-                    guide@vit.edu
+                    j.daniekingsley@vit.ac.in
                   </a>
                 </div>
                 
                 <div className="flex items-center gap-3">
                   <Phone className="w-5 h-5 text-purple-500 flex-shrink-0" />
-                  <span className={isDarkMode ? 'text-gray-300' : 'text-gray-700'}>+91 (555) 987-6543</span>
+                  <span className={isDarkMode ? 'text-gray-300' : 'text-gray-700'}>+91 90259 56491</span>
                 </div>
                 
                 <div className="flex items-start gap-3">
@@ -101,7 +98,7 @@ export function ContactPage({ isDarkMode, onBack }: ContactPageProps) {
                   <span className={isDarkMode ? 'text-gray-300' : 'text-gray-700'}>
                     Department of Integrative Biology<br />
                     VIT University, Vellore<br />
-                    Tamil Nadu 632014, India
+                    Tamil Nadu, India, 632014
                   </span>
                 </div>
               </div>
@@ -110,7 +107,8 @@ export function ContactPage({ isDarkMode, onBack }: ContactPageProps) {
           
           {/* Database Maintainer */}
           <div className={`rounded-xl shadow-lg p-8 ${isDarkMode ? 'bg-gray-800 border-gray-700' : 'bg-white border-gray-200'} border`}>
-            <h2 className={`text-2xl font-bold mb-6 ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
+            <h2 className={`text-2xl font-bold mb-6 flex items-center gap-2 ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
+              <UserIcon className="w-6 h-6 text-blue-500" />
               Database Maintainer
             </h2>
             
@@ -127,14 +125,14 @@ export function ContactPage({ isDarkMode, onBack }: ContactPageProps) {
               
               <div className="flex items-center gap-3">
                 <Phone className="w-5 h-5 text-blue-500 flex-shrink-0" />
-                <span className={isDarkMode ? 'text-gray-300' : 'text-gray-700'}>+1 (555) 987-6543</span>
+                <span className={isDarkMode ? 'text-gray-300' : 'text-gray-700'}>91-416-2243091/93</span>
               </div>
               
               <div className="flex items-start gap-3">
                 <MapPin className="w-5 h-5 text-blue-500 flex-shrink-0 mt-1" />
                 <span className={isDarkMode ? 'text-gray-300' : 'text-gray-700'}>
-                  Department of Botanical Sciences<br />
-                  University Campus
+                  Vellore Institute of Technology, Vellore Campus<br />
+                  Tamil Nadu, India, 632014
                 </span>
               </div>
             </div>
