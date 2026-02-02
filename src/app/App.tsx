@@ -394,7 +394,7 @@ export default function App() {
 
 
             {/* Main content - Functionality list with dynamic background */}
-            <main className="relative flex-grow overflow-hidden">
+            <main className="relative flex-grow overflow-visible">
                 {/* Dynamic background images with transition */}
                 {backgroundImages.map((image, index) => (
                     <div

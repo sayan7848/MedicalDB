@@ -115,7 +115,7 @@ export function SearchPage({ isDarkMode, onNavigate, onBack }: SearchPageProps) 
               
               {/* Autocomplete suggestions */}
               {showPlantSuggestions && plantSuggestions.length > 0 && (
-                <div className={`absolute z-10 w-full mt-2 rounded-lg shadow-xl border ${
+                <div className={`absolute z-50 w-full mt-2 rounded-lg shadow-xl border max-h-56 overflow-y-auto ${
                   isDarkMode ? 'bg-gray-800 border-gray-700' : 'bg-white border-gray-200'
                 }`}>
                   {plantSuggestions.map((plant) => (
@@ -174,7 +174,7 @@ export function SearchPage({ isDarkMode, onNavigate, onBack }: SearchPageProps) 
               
               {/* Autocomplete suggestions */}
               {showCompoundSuggestions && compoundSuggestions.length > 0 && (
-                <div className={`absolute z-10 w-full mt-2 rounded-lg shadow-xl border ${
+                <div className={`absolute z-50 w-full mt-2 rounded-lg shadow-xl border max-h-56 overflow-y-auto ${
                   isDarkMode ? 'bg-gray-800 border-gray-700' : 'bg-white border-gray-200'
                 }`}>
                   {compoundSuggestions.map((compound) => (
