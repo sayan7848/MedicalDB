@@ -21,7 +21,7 @@ export function ExperimentalDataPage({ isDarkMode, onBack }: ExperimentalDataPag
           <span>Back</span>
         </button>
         <h1 className={`text-4xl font-bold mb-8 ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
-          Realated Experiments
+          Related Experiments
         </h1>
         
         <div className="space-y-6">
