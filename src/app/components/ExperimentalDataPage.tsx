@@ -261,8 +261,8 @@ function PaperDetailPage({ paper, isDarkMode, onBack }: {
         </button>
 
         {/* Title Section */}
-        <div className={`rounded-xl p-6 mb-6 border-2 ${
-          isDarkMode ? 'bg-gray-800 border-blue-500' : 'bg-white border-blue-400'
+        <div className={`rounded-xl p-6 mb-6 border ${
+          isDarkMode ? 'bg-gray-800 border-gray-700' : 'bg-white border-gray-300'
         }`}>
           <h2 className={`text-sm font-semibold mb-2 ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>
             TITLE OF THE PAPER
