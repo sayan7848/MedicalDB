@@ -29,7 +29,7 @@ export function SearchCompoundPage({ isDarkMode, onBack}: SearchCompoundPageProp
   }
 
   return (
-    <div className={`min-h-screen ${isDarkMode ? 'bg-gray-900' : 'bg-white'} py-12 px-4 sm:px-8`}>
+    <div className={`py-12 px-4 sm:px-8`}>
       <div className="max-w-6xl mx-auto">
         <button
           onClick={onBack}

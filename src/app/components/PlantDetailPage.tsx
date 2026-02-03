@@ -37,7 +37,7 @@ export function PlantDetailPage({ plant, isDarkMode, onBack, onNavigate }: Plant
   console.log("Phytocompounds:", plant.phytocompounds);
 
   return (
-    <div className={`min-h-screen ${isDarkMode ? 'bg-gray-900' : 'bg-white'} py-12 px-4 sm:px-8`}>
+    <div className={`py-12 px-4 sm:px-8`}>
       <div className="max-w-7xl mx-auto">
         <button
           onClick={onBack}
