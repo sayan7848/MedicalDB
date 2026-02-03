@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Search, Menu, FlaskConical, User, ChevronDown, LogOut, X, Moon, Sun, Mail, Phone, MapPin } from "lucide-react";
-import { BrowsePage } from "@/app/components/BrowsePage";
-import { SearchPage } from "@/app/components/SearchPage";
+import { SearchPlantPage } from "@/app/components/SearchPlantPage";
+import { SearchCompoundPage } from "@/app/components/SearchCompoundPage";
 import { HelpPage } from "@/app/components/HelpPage";
 import { CitationPage } from "@/app/components/CitationPage";
 import { PlantDetailPage } from "@/app/components/PlantDetailPage";
@@ -68,7 +68,7 @@ export default function App() {
 
     // Navigation states
     const [navigationStack, setNavigationStack] = useState<{
-        page: 'home' | 'browse' | 'search' | 'experiment' | 'help' | 'citation' | 'plant-detail' | 'compound-detail' | 'contact' | 'acknowledgement' | 'about';
+        page: 'home' | 'search-plant' | 'search-compound' | 'experiment' | 'help' | 'citation' | 'plant-detail' | 'compound-detail' | 'contact' | 'acknowledgement' | 'about';
         selectedPlant: Plant | null;
         selectedCompound: PhytoCompound | null;
     }[]>([{ page: 'home', selectedPlant: null, selectedCompound: null }]);
@@ -214,7 +214,7 @@ export default function App() {
     // Navigation handler
     const handleNavigate = (page: string, data?: Plant | PhytoCompound) => {
         // Check if user needs to be authenticated for certain pages
-        if (!currentUser && (page === 'browse' || page === 'search')) {
+        if (!currentUser && (page === 'search-plant' || page === 'search-compound')) {
             openSignInModal();
             return;
         }
@@ -234,7 +234,7 @@ export default function App() {
             selectedPlant: newPlant,
             selectedCompound: newCompound
         }]);
-        
+
         setShowHamburgerMenu(false);
     };
 
@@ -352,11 +352,11 @@ export default function App() {
                                         <button onClick={() => handleNavigate('about')} className={`w-full text-left block px-4 py-3 transition-colors ${isDarkMode ? 'text-gray-300 hover:bg-gray-700' : 'text-gray-700 hover:bg-gray-100'}`}>
                                             About
                                         </button>
-                                        <button onClick={() => handleNavigate('browse')} className={`w-full text-left block px-4 py-3 transition-colors ${isDarkMode ? 'text-gray-300 hover:bg-gray-700' : 'text-gray-700 hover:bg-gray-100'}`}>
-                                            Browse
+                                        <button onClick={() => handleNavigate('search-plant')} className={`w-full text-left block px-4 py-3 transition-colors ${isDarkMode ? 'text-gray-300 hover:bg-gray-700' : 'text-gray-700 hover:bg-gray-100'}`}>
+                                            Search Plants
                                         </button>
-                                        <button onClick={() => handleNavigate('search')} className={`w-full text-left block px-4 py-3 transition-colors ${isDarkMode ? 'text-gray-300 hover:bg-gray-700' : 'text-gray-700 hover:bg-gray-100'}`}>
-                                            Search
+                                        <button onClick={() => handleNavigate('search-compound')} className={`w-full text-left block px-4 py-3 transition-colors ${isDarkMode ? 'text-gray-300 hover:bg-gray-700' : 'text-gray-700 hover:bg-gray-100'}`}>
+                                            Search Compounds
                                         </button>
                                         <button onClick={() => handleNavigate('experiment')} className={`w-full text-left block px-4 py-3 transition-colors ${isDarkMode ? 'text-gray-300 hover:bg-gray-700' : 'text-gray-700 hover:bg-gray-100'}`}>
                                             Experimental Data
@@ -412,10 +412,10 @@ export default function App() {
 
                 {/* Conditional rendering based on current page */}
                 <div className="relative">
-                    {currentPage === 'browse' ? (
-                        <BrowsePage isDarkMode={isDarkMode} onNavigate={handleNavigate} onBack={handleBack} />
-                    ) : currentPage === 'search' ? (
-                        <SearchPage isDarkMode={isDarkMode} onNavigate={handleNavigate} onBack={handleBack} />
+                    {currentPage === 'search-plant' ? (
+                        <SearchPlantPage isDarkMode={isDarkMode} onBack={handleBack} onNavigate={handleNavigate} />
+                    ) : currentPage === 'search-compound' ? (
+                        <SearchCompoundPage isDarkMode={isDarkMode} onBack={handleBack} />
                     ) : currentPage === 'experiment' ? (
                         <ExperimentalDataPage isDarkMode={isDarkMode} onBack={handleBack} />
                     ) : currentPage === 'help' ? (
@@ -423,9 +423,18 @@ export default function App() {
                     ) : currentPage === 'citation' ? (
                         <CitationPage isDarkMode={isDarkMode} onBack={handleBack} />
                     ) : currentPage === 'plant-detail' && selectedPlant ? (
-                        <PlantDetailPage plant={selectedPlant} isDarkMode={isDarkMode} onBack={handleBack} onNavigate={handleNavigate} />
+                        <PlantDetailPage
+                            plant={selectedPlant}
+                            isDarkMode={isDarkMode}
+                            onBack={handleBack}
+                            onNavigate={handleNavigate}
+                        />
                     ) : currentPage === 'compound-detail' && selectedCompound ? (
-                        <CompoundDetailPage compound={selectedCompound} isDarkMode={isDarkMode} onBack={handleBack} onNavigate={handleNavigate} />
+                        <CompoundDetailPage
+                            compound={selectedCompound}
+                            isDarkMode={isDarkMode}
+                            onBack={handleBack}
+                        />
                     ) : currentPage === 'contact' ? (
                         <ContactPage isDarkMode={isDarkMode} onBack={handleBack} />
                     ) : currentPage === 'acknowledgement' ? (
@@ -440,20 +449,20 @@ export default function App() {
 
                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto px-2 sm:px-0">
                                     {/* Search Plant */}
-                                    <div onClick={() => handleNavigate('search')} className={`rounded-xl shadow-lg p-8 hover:shadow-xl transition-shadow cursor-pointer ${isDarkMode ? 'bg-gray-800 border-gray-700' : 'bg-white border-gray-200'} border`}>
+                                    <div onClick={() => handleNavigate('search-plant')} className={`rounded-xl shadow-lg p-8 hover:shadow-xl transition-shadow cursor-pointer ${isDarkMode ? 'bg-gray-800 border-gray-700' : 'bg-white border-gray-200'} border`}>
                                         <div className="flex items-center justify-center mb-6">
                                             <div className={`p-4 rounded-full ${isDarkMode ? 'bg-green-900/50' : 'bg-green-100'}`}>
                                                 <Search className={`w-12 h-12 ${isDarkMode ? 'text-green-400' : 'text-green-600'}`} />
                                             </div>
                                         </div>
-                                        <h3 className={`text-2xl font-bold mb-3 text-center ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>Search Plant</h3>
+                                        <h3 className={`text-2xl font-bold mb-3 text-center ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>Search Plants</h3>
                                         <p className={`text-center ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>
                                             Explore our comprehensive database of plant species with detailed botanical information and research data.
                                         </p>
                                     </div>
 
                                     {/* Search PhytoCompounds */}
-                                    <div onClick={() => handleNavigate('search')} className={`rounded-xl shadow-lg p-8 hover:shadow-xl transition-shadow cursor-pointer ${isDarkMode ? 'bg-gray-800 border-gray-700' : 'bg-white border-gray-200'} border`}>
+                                    <div onClick={() => handleNavigate('search-compound')} className={`rounded-xl shadow-lg p-8 hover:shadow-xl transition-shadow cursor-pointer ${isDarkMode ? 'bg-gray-800 border-gray-700' : 'bg-white border-gray-200'} border`}>
                                         <div className="flex items-center justify-center mb-6">
                                             <div className={`p-4 rounded-full ${isDarkMode ? 'bg-blue-900/50' : 'bg-blue-100'}`}>
                                                 <FlaskConical className={`w-12 h-12 ${isDarkMode ? 'text-blue-400' : 'text-blue-600'}`} />

@@ -1,5 +1,5 @@
-import { BrowsePage } from "@/app/components/BrowsePage";
-import { SearchPage } from "@/app/components/SearchPage";
+import { SearchPlantPage } from "@/app/components/SearchPlantPage";
+import { SearchCompoundPage } from "@/app/components/SearchCompoundPage";
 import { HelpPage } from "@/app/components/HelpPage";
 import { CitationPage } from "@/app/components/CitationPage";
 import { PlantDetailPage } from "@/app/components/PlantDetailPage";
@@ -20,12 +20,12 @@ interface AppRouterProps {
 export function AppRouter({ currentPage, isDarkMode, selectedPlant, selectedCompound, onNavigate, onBack }: AppRouterProps) {
   
   // Render different pages based on currentPage state
-  if (currentPage === 'browse') {
-    return <BrowsePage isDarkMode={isDarkMode} onNavigate={onNavigate} onBack={onBack} />;
+  if (currentPage === 'search-plant') {
+    return <SearchPlantPage isDarkMode={isDarkMode} onBack={onBack} onNavigate={onNavigate} />;
   }
-  
-  if (currentPage === 'search') {
-    return <SearchPage isDarkMode={isDarkMode} onNavigate={onNavigate} onBack={onBack} />;
+
+  if (currentPage === 'search-compound') {
+    return <SearchCompoundPage isDarkMode={isDarkMode} onBack={onBack} />;
   }
 
   if (currentPage === 'experiment') {
@@ -41,11 +41,18 @@ export function AppRouter({ currentPage, isDarkMode, selectedPlant, selectedComp
   }
   
   if (currentPage === 'plant-detail' && selectedPlant) {
-    return <PlantDetailPage plant={selectedPlant} isDarkMode={isDarkMode} onBack={onBack} onNavigate={onNavigate} />;
+    return (
+      <PlantDetailPage
+        plant={selectedPlant}
+        isDarkMode={isDarkMode}
+        onBack={onBack}
+        onNavigate={onNavigate}
+      />
+    );
   }
   
   if (currentPage === 'compound-detail' && selectedCompound) {
-    return <CompoundDetailPage compound={selectedCompound} isDarkMode={isDarkMode} onBack={onBack} onNavigate={onNavigate} />;
+    return <CompoundDetailPage compound={selectedCompound} isDarkMode={isDarkMode} onBack={onBack} />;
   }
   
   // Default home page
@@ -56,7 +63,7 @@ export function AppRouter({ currentPage, isDarkMode, selectedPlant, selectedComp
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto px-2 sm:px-0">
         {/* Search Plant */}
         <div 
-          onClick={() => onNavigate('search')}
+          onClick={() => onNavigate('search-plant')}
           className={`rounded-xl shadow-lg p-8 hover:shadow-xl transition-shadow cursor-pointer ${isDarkMode ? 'bg-gray-800 border-gray-700' : 'bg-white border-gray-200'} border`}
         >
           <div className="flex items-center justify-center mb-6">
@@ -72,7 +79,7 @@ export function AppRouter({ currentPage, isDarkMode, selectedPlant, selectedComp
 
         {/* Search PhytoCompounds */}
         <div 
-          onClick={() => onNavigate('search')}
+          onClick={() => onNavigate('search-compound')}
           className={`rounded-xl shadow-lg p-8 hover:shadow-xl transition-shadow cursor-pointer ${isDarkMode ? 'bg-gray-800 border-gray-700' : 'bg-white border-gray-200'} border`}
         >
           <div className="flex items-center justify-center mb-6">

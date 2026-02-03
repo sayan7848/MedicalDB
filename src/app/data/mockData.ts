@@ -1,13 +1,26 @@
 // Mock data for plants and phytocompounds
 
+export interface PhytocompoundEntry {
+  slNo: number;
+  name: string;
+  hyperlink?: string;
+  plantParts: string;
+}
+
 export interface Plant {
   id: string;
-  name: string;
+  commonName: string;
   scientificName: string;
+  kingdom?: string;
+  division?: string;
+  class?: string;
+  order?: string;
   family: string;
-  description: string;
-  uses: string[];
-  compounds: string[];
+  genus?: string;
+  species?: string;
+  description?: string;
+  uses?: string[];
+  phytocompounds: PhytocompoundEntry[];
 }
 
 export interface PhytoCompound {
@@ -22,76 +35,156 @@ export interface PhytoCompound {
 
 export const plants: Plant[] = [
   {
-    id: "1",
-    name: "Turmeric",
+    id: "PHOT001",
+    commonName: "Turmeric",
     scientificName: "Curcuma longa",
+    kingdom: "Plantae",
+    division: "Magnoliophyta",
+    class: "Monocotyledoneae",
+    order: "Zingiberales",
     family: "Zingiberaceae",
+    genus: "Curcuma",
+    species: "C. longa",
     description: "A flowering plant with bright yellow rhizomes used extensively in cooking and traditional medicine.",
     uses: ["Anti-inflammatory", "Antioxidant", "Digestive health"],
-    compounds: ["Curcumin", "Demethoxycurcumin", "Bisdemethoxycurcumin"]
+    phytocompounds: [
+      { slNo: 1, name: "Curcumin", hyperlink: "https://pubchem.ncbi.nlm.nih.gov/compound/985", plantParts: "" },
+      { slNo: 2, name: "Demethoxycurcumin", plantParts: "" },
+      { slNo: 3, name: "Bisdemethoxycurcumin", plantParts: "" }
+    ]
   },
   {
-    id: "2",
-    name: "Neem",
+    id: "PHOT002",
+    commonName: "Neem",
     scientificName: "Azadirachta indica",
+    kingdom: "Plantae",
+    division: "Magnoliophyta",
+    class: "Dicotyledoneae",
+    order: "Rutales",
     family: "Meliaceae",
+    genus: "Azadirachta",
+    species: "A. indica",
     description: "An evergreen tree native to the Indian subcontinent known for its medicinal properties.",
     uses: ["Antibacterial", "Antifungal", "Skin care"],
-    compounds: ["Azadirachtin", "Nimbin", "Nimbidin"]
+    phytocompounds: [
+      { slNo: 1, name: "Azadirachtin", hyperlink: "https://pubchem.ncbi.nlm.nih.gov/compound/5280863", plantParts: "" },
+      { slNo: 2, name: "Nimbin", plantParts: "" },
+      { slNo: 3, name: "Nimbidin", plantParts: "" }
+    ]
   },
   {
-    id: "3",
-    name: "Ginger",
+    id: "PHOT003",
+    commonName: "Ginger",
     scientificName: "Zingiber officinale",
+    kingdom: "Plantae",
+    division: "Magnoliophyta",
+    class: "Monocotyledoneae",
+    order: "Zingiberales",
     family: "Zingiberaceae",
+    genus: "Zingiber",
+    species: "Z. officinale",
     description: "A flowering plant whose rhizome is widely used as a spice and in traditional medicine.",
     uses: ["Anti-nausea", "Anti-inflammatory", "Digestive aid"],
-    compounds: ["Gingerol", "Shogaol", "Zingerone"]
+    phytocompounds: [
+      { slNo: 1, name: "Gingerol", hyperlink: "https://pubchem.ncbi.nlm.nih.gov/compound/11141", plantParts: "" },
+      { slNo: 2, name: "Shogaol", plantParts: "" },
+      { slNo: 3, name: "Zingerone", plantParts: "" }
+    ]
   },
   {
-    id: "4",
-    name: "Ashwagandha",
+    id: "PHOT004",
+    commonName: "Ashwagandha",
     scientificName: "Withania somnifera",
+    kingdom: "Plantae",
+    division: "Magnoliophyta",
+    class: "Dicotyledoneae",
+    order: "Solanales",
     family: "Solanaceae",
+    genus: "Withania",
+    species: "W. somnifera",
     description: "An ancient medicinal herb used in Ayurvedic medicine for stress relief and vitality.",
     uses: ["Adaptogen", "Stress relief", "Immune support"],
-    compounds: ["Withanolides", "Withaferin A", "Sitoindosides"]
+    phytocompounds: [
+      { slNo: 1, name: "Withanolides", plantParts: "" },
+      { slNo: 2, name: "Withaferin A", plantParts: "" },
+      { slNo: 3, name: "Sitoindosides", plantParts: "" }
+    ]
   },
   {
-    id: "5",
-    name: "Holy Basil",
+    id: "PHOT005",
+    commonName: "Holy Basil",
     scientificName: "Ocimum sanctum",
+    kingdom: "Plantae",
+    division: "Magnoliophyta",
+    class: "Dicotyledoneae",
+    order: "Lamiales",
     family: "Lamiaceae",
+    genus: "Ocimum",
+    species: "O. sanctum",
     description: "A sacred plant in Hindu tradition with significant therapeutic properties.",
     uses: ["Stress relief", "Respiratory health", "Antioxidant"],
-    compounds: ["Eugenol", "Ursolic acid", "Rosmarinic acid"]
+    phytocompounds: [
+      { slNo: 1, name: "Eugenol", hyperlink: "https://pubchem.ncbi.nlm.nih.gov/compound/3314", plantParts: "" },
+      { slNo: 2, name: "Ursolic acid", plantParts: "" },
+      { slNo: 3, name: "Rosmarinic acid", plantParts: "" }
+    ]
   },
   {
-    id: "6",
-    name: "Amla",
+    id: "PHOT006",
+    commonName: "Amla",
     scientificName: "Phyllanthus emblica",
+    kingdom: "Plantae",
+    division: "Magnoliophyta",
+    class: "Dicotyledoneae",
+    order: "Malpighiales",
     family: "Phyllanthaceae",
+    genus: "Phyllanthus",
+    species: "P. emblica",
     description: "Indian gooseberry, rich in vitamin C and used extensively in Ayurvedic preparations.",
     uses: ["Vitamin C source", "Hair care", "Immune booster"],
-    compounds: ["Ascorbic acid", "Gallic acid", "Ellagic acid"]
+    phytocompounds: [
+      { slNo: 1, name: "Ascorbic acid", plantParts: "" },
+      { slNo: 2, name: "Gallic acid", plantParts: "" },
+      { slNo: 3, name: "Ellagic acid", plantParts: "" }
+    ]
   },
   {
-    id: "7",
-    name: "Brahmi",
+    id: "PHOT007",
+    commonName: "Brahmi",
     scientificName: "Bacopa monnieri",
+    kingdom: "Plantae",
+    division: "Magnoliophyta",
+    class: "Dicotyledoneae",
+    order: "Lamiales",
     family: "Plantaginaceae",
+    genus: "Bacopa",
+    species: "B. monnieri",
     description: "A creeping herb used to enhance memory and cognitive function.",
     uses: ["Memory enhancement", "Cognitive support", "Stress relief"],
-    compounds: ["Bacosides", "Bacoside A", "Bacoside B"]
+    phytocompounds: [
+      { slNo: 1, name: "Bacosides", plantParts: "" },
+      { slNo: 2, name: "Bacoside A", plantParts: "" },
+      { slNo: 3, name: "Bacoside B", plantParts: "" }
+    ]
   },
   {
-    id: "8",
-    name: "Fenugreek",
+    id: "PHOT008",
+    commonName: "Fenugreek",
     scientificName: "Trigonella foenum-graecum",
+    kingdom: "Plantae",
+    division: "Magnoliophyta",
+    class: "Dicotyledoneae",
+    order: "Fabales",
     family: "Fabaceae",
+    genus: "Trigonella",
+    species: "T. foenum-graecum",
     description: "An annual plant with seeds used as both spice and medicine.",
     uses: ["Blood sugar control", "Lactation support", "Digestive health"],
-    compounds: ["Trigonelline", "Diosgenin", "4-Hydroxyisoleucine"]
+    phytocompounds: [
+      { slNo: 1, name: "Trigonelline", plantParts: "" },
+      { slNo: 2, name: "Diosgenin", plantParts: "" },
+      { slNo: 3, name: "4-Hydroxyisoleucine", plantParts: "" }
+    ]
   }
 ];
 
