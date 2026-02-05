@@ -1,5 +1,5 @@
 import { ArrowLeft, FlaskConical } from "lucide-react";
-import { PhytoCompound, Plant } from "@/app/data/mockData";
+import { PhytoCompound } from "@/app/data/mockData";
 import phytoDetailBG from "@/assets/phytoDetailsBG.jpg";
 
 interface CompoundDetailPageProps {
@@ -36,7 +36,15 @@ export function CompoundDetailPage({ compound, isDarkMode, onBack }: CompoundDet
         {/* 3x3 Grid Layout */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 mb-4">
           {/* Row 0 */}
-          {/* grid[0][0] - Basic Properties */}
+          
+          {/* grid[0][0] - 2D Structure (single box) */}
+          <div className={`border p-4 rounded-xl shadow-sm flex items-center justify-center ${isDarkMode ? "border-gray-700 bg-gray-800" : "border-gray-300 bg-white"}`}>
+            <span className={`${isDarkMode ? "text-gray-400" : "text-gray-600"} text-lg font-semibold`}>
+              2D STRUCTURE
+            </span>
+          </div>
+          
+          {/* grid[0][1] - Basic Properties */}
           <div className={`border p-4 rounded-xl shadow-sm ${isDarkMode ? "border-gray-700 bg-gray-800" : "border-gray-300 bg-white"}`}>
             <h3 className={`text-sm font-semibold mb-3 ${isDarkMode ? "text-blue-400" : "text-blue-600"}`}>
               Basic Properties
@@ -52,7 +60,7 @@ export function CompoundDetailPage({ compound, isDarkMode, onBack }: CompoundDet
             </p>
           </div>
 
-          {/* grid[0][1] - Drug Likeness & Solubility */}
+          {/* grid[0][2] - Drug Likeness & Solubility */}
           <div className={`border p-4 rounded-xl shadow-sm ${isDarkMode ? "border-gray-700 bg-gray-800" : "border-gray-300 bg-white"}`}>
             <h3 className={`text-sm font-semibold mb-3 ${isDarkMode ? "text-blue-400" : "text-blue-600"}`}>
               Drug Likeness & Solubility
@@ -66,13 +74,6 @@ export function CompoundDetailPage({ compound, isDarkMode, onBack }: CompoundDet
             <p className={`text-sm mt-2 ${isDarkMode ? "text-gray-300" : "text-gray-700"}`}><span className={`font-semibold ${isDarkMode ? "text-white" : "text-gray-900"}`}>GI absorption:</span></p>
             <p className={`text-sm mt-2 ${isDarkMode ? "text-gray-300" : "text-gray-700"}`}><span className={`font-semibold ${isDarkMode ? "text-white" : "text-gray-900"}`}>BBB permeant:</span></p>
             <p className={`text-sm mt-2 ${isDarkMode ? "text-gray-300" : "text-gray-700"}`}><span className={`font-semibold ${isDarkMode ? "text-white" : "text-gray-900"}`}>P-gp substrate:</span></p>
-          </div>
-
-          {/* grid[0][2] - 2D Structure (single box) */}
-          <div className={`border p-4 rounded-xl shadow-sm flex items-center justify-center ${isDarkMode ? "border-gray-700 bg-gray-800" : "border-gray-300 bg-white"}`}>
-            <span className={`${isDarkMode ? "text-gray-400" : "text-gray-600"} text-lg font-semibold`}>
-              2D STRUCTURE
-            </span>
           </div>
 
           {/* Row 1 */}
