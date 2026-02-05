@@ -1,5 +1,6 @@
 import { ArrowLeft, FlaskConical } from "lucide-react";
 import { PhytoCompound, Plant } from "@/app/data/mockData";
+import phytoDetailBG from "@/assets/phytoDetailsBG.jpg";
 
 interface CompoundDetailPageProps {
   compound: PhytoCompound;
@@ -9,7 +10,9 @@ interface CompoundDetailPageProps {
 
 export function CompoundDetailPage({ compound, isDarkMode, onBack }: CompoundDetailPageProps) {
   return (
-    <div className={`py-10`}>
+    <div className={`relative min-h-screen py-10 bg-cover bg-center`} style={{ backgroundImage: `url('${phytoDetailBG}')` }}>
+      <div className={`absolute inset-0 ${isDarkMode ? 'bg-gray-900/80' : 'bg-white/80'}`}></div>
+      <div className="relative">
       <div className="max-w-6xl mx-auto px-4 sm:px-8">
         <button
           onClick={onBack}
@@ -142,6 +145,7 @@ export function CompoundDetailPage({ compound, isDarkMode, onBack }: CompoundDet
           <p className={`text-sm font-semibold ${isDarkMode ? "text-gray-200" : "text-gray-800"}`}>
             Functions in LIVER DISEASE:
           </p>
+        </div>
         </div>
       </div>
     </div>

@@ -1,6 +1,7 @@
 import { ArrowLeft } from "lucide-react";
 import { phytoCompounds } from "@/app/data/mockData";
 import type { PhytoCompound } from "@/app/data/mockData";
+import plantDetailBG from "@/assets/plantDetailsBG.jpg";
 
 interface PhytocompoundEntry {
   slNo: number;
@@ -37,7 +38,9 @@ export function PlantDetailPage({ plant, isDarkMode, onBack, onNavigate }: Plant
   console.log("Phytocompounds:", plant.phytocompounds);
 
   return (
-    <div className={`py-12 px-4 sm:px-8`}>
+    <div className={`relative min-h-screen py-12 px-4 sm:px-8 bg-cover bg-center`} style={{ backgroundImage: `url('${plantDetailBG}')` }}>
+      <div className={`absolute inset-0 ${isDarkMode ? 'bg-gray-900/80' : 'bg-white/80'}`}></div>
+      <div className="relative">
       <div className="max-w-7xl mx-auto">
         <button
           onClick={onBack}
@@ -199,6 +202,7 @@ export function PlantDetailPage({ plant, isDarkMode, onBack, onNavigate }: Plant
               </tbody>
             </table>
           </div>
+        </div>
         </div>
       </div>
     </div>
